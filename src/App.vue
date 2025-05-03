@@ -1,16 +1,14 @@
 <template>
   <div class="app">
-    <HamburgerMenu :isOpen="isMenuOpen" @toggle="toggleMenu" />
-    <div class="content" :class="{ 'menu-open': isMenuOpen }">
-      <MainContent />
-      <ContactForm />
-    </div>    
+    <HamburgerMenu 
+      @toggle="handleMenuToggle"
+      @navigate="handleNavigation"
+    />
+    <div class="content" :class="{ 'menu-pushed': isMenuOpen }">
+      <!-- Основной контент всегда виден -->
+       <MainContent />
+    </div>
   </div>
-  <div class="anketa">
-    <Questionnaire />
-  </div>
-  <Table />
-
 </template>
 
 <script setup>
@@ -18,41 +16,41 @@ import { ref } from 'vue';
 import HamburgerMenu from './components/HamburgerMenu.vue';
 import MainContent from './components/MainContent.vue';
 import ContactForm from './components/ContactForm.vue';
-import Table from './components/Table.vue';
-import Questionnaire from './components/Questionnaire.vue';
 
 const isMenuOpen = ref(false);
 
-const toggleMenu = () => {
-  isMenuOpen.value = !isMenuOpen.value;
+const handleMenuToggle = (isOpen) => {
+  isMenuOpen.value = isOpen;
+};
+
+const handleNavigation = (section) => {
+  const element = document.getElementById(section);
+  if (element) {
+    element.scrollIntoView({ behavior: 'smooth' });
+  }
 };
 </script>
 
 <style scoped>
 .app {
-  display: flex;
-  min-height: 100vh;
   position: relative;
+  min-height: 100vh;
   overflow-x: hidden;
 }
 
 .content {
-  display: flex;
-  width: 100%;
   transition: transform 0.3s ease;
 }
 
-.menu-open {
-  transform: translateY(250px);
+.menu-pushed {
+  transform: translateX(280px);
 }
 
-@media (max-width: 768px) {
-  .content {
-    flex-direction: column;
-  }
-  
-  .menu-open {
-    transform: translateY(300px);
+
+
+@media (min-width: 769px) {
+  .menu-pushed {
+    transform: translateX(320px);
   }
 }
 </style>

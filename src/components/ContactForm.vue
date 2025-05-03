@@ -1,7 +1,6 @@
 <template>
     <div class="contact-form-wrapper">
       <div class="contact-form">
-        <h2 class="form-title">Fill out the application</h2>
         <form @submit.prevent="submitForm" class="form-container">
           <div class="form-group">
             <input
@@ -176,7 +175,7 @@
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     width: 380px;
-    padding: 20px 25px;
+    padding: 35px 25px;
   }
   
   .form-title {
