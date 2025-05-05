@@ -35,8 +35,8 @@
             </button>
           </li>
           <li class="menu-item">
-            <button class="menu-button" @click="navigateTo('questionnaire')">
-              Test
+            <button @click="emit('navigate', 'test')" class="menu-button">
+            Test
             </button>
           </li>
           <li class="menu-item">
@@ -63,6 +63,7 @@ import { ref, onMounted, onBeforeUnmount } from 'vue';
 
 const isOpen = ref(false);
 const emit = defineEmits(['toggle', 'navigate']);
+
 
 const toggleMenu = () => {
   isOpen.value = !isOpen.value;
@@ -298,7 +299,7 @@ onBeforeUnmount(() => {
   }
   
   .logo-text {
-    font-size: 1.4rem;
+    font-size: 1rem;
   }
   
   .menu-content {

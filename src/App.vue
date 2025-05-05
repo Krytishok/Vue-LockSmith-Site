@@ -1,5 +1,6 @@
 <template>
   <div class="app">
+    <CornerIcons class="corner-icons" />
     <HamburgerMenu 
       @toggle="handleMenuToggle"
       @navigate="handleNavigation"
@@ -10,6 +11,7 @@
         <ContactForm class="contact-form" />
       </div>
     </div>
+    <LockSmithQuiz ref="quiz" />
   </div>
 </template>
 
@@ -18,8 +20,11 @@ import { ref } from 'vue';
 import HamburgerMenu from './components/HamburgerMenu.vue';
 import MainContent from './components/MainContent.vue';
 import ContactForm from './components/ContactForm.vue';
+import CornerIcons from './components/CornerIcons.vue';
+import LockSmithQuiz from './components/LockSmithQuiz.vue';
 
 const isMenuOpen = ref(false);
+const quiz = ref(null);
 
 const handleMenuToggle = (isOpen) => {
   isMenuOpen.value = isOpen;
@@ -27,9 +32,13 @@ const handleMenuToggle = (isOpen) => {
 
 const handleNavigation = (section) => {
   const element = document.getElementById(section);
-  if (element) {
+  if (section === 'test') {
+    quiz.value.showQuiz = true;
+    isMenuOpen.value = false; // Закрываем меню
+  } else if (element){
     element.scrollIntoView({ behavior: 'smooth' });
-  }
+  } 
+  
 };
 </script>
 
@@ -78,6 +87,7 @@ const handleNavigation = (section) => {
 .menu-pushed {
   transform: translateX(280px);
 }
+
 
 @media (min-width: 769px) {
   .menu-pushed {
