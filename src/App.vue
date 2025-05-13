@@ -257,6 +257,12 @@ const handleNavigation = (section) => {
     width: 100%;
   }
 
+  .main-content{
+    padding-left: 0px;
+  }
+
+
+
   .background-controls {
     bottom: 10px;
   }

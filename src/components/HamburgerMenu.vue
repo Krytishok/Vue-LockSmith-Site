@@ -202,6 +202,7 @@ onBeforeUnmount(() => {
   letter-spacing: 0.5px;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
   white-space: nowrap;
+  visibility: hidden;
 }
 
 .logo-text::after {
@@ -299,6 +300,7 @@ onBeforeUnmount(() => {
   
   .logo-text {
     font-size: 1rem;
+    visibility: visible;
   }
   
   .menu-content {
