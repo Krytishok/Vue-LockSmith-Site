@@ -193,7 +193,6 @@ onBeforeUnmount(() => {
 
 .logo-text {
   color: white;
-  visibility: hidden;
   font-size: 1.25rem;
   font-weight: 600;
   margin: 0;
@@ -300,7 +299,6 @@ onBeforeUnmount(() => {
   
   .logo-text {
     font-size: 1rem;
-    visibility: visible;
   }
   
   .menu-content {
