@@ -26,6 +26,7 @@
 }
 
 .content-wrapper {
+  margin-left: 30px;
   max-width: 800px;
   width: 100%;
 }

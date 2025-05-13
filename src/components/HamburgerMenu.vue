@@ -191,7 +191,6 @@ onBeforeUnmount(() => {
   transform: translateX(2px) translateY(2px) rotate(-45deg);
 }
 
-/* Логотип с точным выравниванием */
 .logo-text {
   color: white;
   font-size: 1.25rem;
