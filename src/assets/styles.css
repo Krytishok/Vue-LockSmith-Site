@@ -6,6 +6,13 @@ body {
     box-sizing: border-box;
     overflow-x: hidden;
 }
+html, body {
+  overscroll-behavior: none; /* Отключает "bounce" эффект */
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+  position: fixed; /* Фиксирует viewport */
+}
 
 @media (max-width: 768px) {
     body {
