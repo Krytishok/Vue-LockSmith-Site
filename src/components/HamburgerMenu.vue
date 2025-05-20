@@ -30,13 +30,33 @@
       >
         <ul class="menu-list">
           <li class="menu-item">
-            <button class="menu-button" @click="navigateTo('contact')">
-              Contacts
-            </button>
+            <div class="dropdown-wrapper">
+              <button 
+                class="menu-button dropdown-button" 
+                @click="toggleContactsDropdown"
+                :aria-expanded="contactsDropdownOpen"
+              >
+                Contacts
+                <span class="dropdown-arrow" :class="{ 'rotate': contactsDropdownOpen }">›</span>
+              </button>
+              <transition name="dropdown">
+                <ul v-show="contactsDropdownOpen" class="dropdown-menu">
+                  <li>
+                    <button class="dropdown-item" @click="navigateTo('contact-email')">Email</button>
+                  </li>
+                  <li>
+                    <button class="dropdown-item" @click="navigateTo('contact-phone')">Phone</button>
+                  </li>
+                  <li>
+                    <button class="dropdown-item" @click="navigateTo('contact-address')">Address</button>
+                  </li>
+                </ul>
+              </transition>
+            </div>
           </li>
           <li class="menu-item">
             <button @click="emit('navigate', 'test')" class="menu-button">
-            Test
+              Test
             </button>
           </li>
           <li class="menu-item">
@@ -62,17 +82,25 @@
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 
 const isOpen = ref(false);
+const contactsDropdownOpen = ref(false);
 const emit = defineEmits(['toggle', 'navigate']);
-
 
 const toggleMenu = () => {
   isOpen.value = !isOpen.value;
   emit('toggle', isOpen.value);
+  if (!isOpen.value) {
+    contactsDropdownOpen.value = false;
+  }
 };
 
 const closeMenu = () => {
   isOpen.value = false;
+  contactsDropdownOpen.value = false;
   emit('toggle', false);
+};
+
+const toggleContactsDropdown = () => {
+  contactsDropdownOpen.value = !contactsDropdownOpen.value;
 };
 
 const navigateTo = (section) => {
@@ -252,10 +280,69 @@ onBeforeUnmount(() => {
   font-size: 16px;
   cursor: pointer;
   transition: background 0.2s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .menu-button:hover {
   background: rgba(255, 255, 255, 0.1);
+}
+
+/* Dropdown styles */
+.dropdown-wrapper {
+  position: relative;
+}
+
+.dropdown-button {
+  position: relative;
+}
+
+.dropdown-arrow {
+  transition: transform 0.3s ease;
+  font-size: 1.2em;
+  margin-left: 8px;
+}
+
+.dropdown-arrow.rotate {
+  transform: rotate(90deg);
+}
+
+.dropdown-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background: rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+.dropdown-item {
+  width: 100%;
+  padding: 12px 24px 12px 36px;
+  text-align: left;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.dropdown-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Dropdown animation */
+.dropdown-enter-active,
+.dropdown-leave-active {
+  transition: all 0.3s ease;
+  max-height: 200px;
+}
+
+.dropdown-enter-from,
+.dropdown-leave-to {
+  opacity: 0;
+  max-height: 0;
 }
 
 /* Оверлей */
@@ -311,6 +398,11 @@ onBeforeUnmount(() => {
   .menu-button {
     padding: 18px 28px;
     font-size: 17px;
+  }
+  
+  .dropdown-item {
+    padding: 14px 28px 14px 42px;
+    font-size: 15px;
   }
 }
 </style>

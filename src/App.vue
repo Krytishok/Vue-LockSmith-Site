@@ -142,7 +142,6 @@ const handleNavigation = (section) => {
   bottom: 0;
   background-size: cover;
   background-position: center;
-  background-attachment: fixed;
   opacity: 0;
   transition: opacity 1s ease-in-out;
   z-index: -1;
