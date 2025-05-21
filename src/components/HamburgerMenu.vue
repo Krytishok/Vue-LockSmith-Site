@@ -230,7 +230,9 @@ onBeforeUnmount(() => {
   letter-spacing: 0.5px;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
   white-space: nowrap;
+  opacity: 0;
   visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 .logo-text::after {
@@ -378,6 +380,11 @@ onBeforeUnmount(() => {
   opacity: 0;
 }
 
+.menu-open .logo-text {
+  opacity: 1;
+  visibility: visible;
+}
+
 /* Адаптивные стили */
 @media (min-width: 768px) {
   .menu-header {
@@ -386,7 +393,7 @@ onBeforeUnmount(() => {
   }
   
   .logo-text {
-    font-size: 1rem;
+    opacity: 1;
     visibility: visible;
   }
   

@@ -151,6 +151,8 @@ const validateName = () => {
   
   if (!form.name.trim()) {
     errors.name = 'Name is required';
+  } else if (form.name.length > 50){
+    errors.name = "Name is too long"
   } else if (!nameRegex.test(form.name)) {
     errors.name = 'Only letters and hyphens allowed';
   } else if (form.name.length < 2) {
@@ -174,17 +176,28 @@ const validatePhone = () => {
 };
 
 const validateEmail = () => {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  showErrors.email = true;
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  const popularDomains = ['com', 'ru', 'net', 'org', 'io', 'gov', 'edu'];
+  const disposableDomains = ['tempmail.com', 'mailinator.com'];
   
-  if (!form.email.trim()) {
+  showErrors.email = true;
+  const email = form.email.trim();
+  
+  if (!email) {
     errors.email = 'Email is required';
-  } else if (/\s/.test(form.email)) {
+  } else if (/\s/.test(email)) {
     errors.email = 'Email cannot contain spaces';
-  } else if (!emailRegex.test(form.email)) {
+  } else if (!emailRegex.test(email)) {
     errors.email = 'Please enter a valid email';
+  } else if (disposableDomains.some(domain => email.includes(domain))) {
+    errors.email = 'Temporary emails are not allowed';
   } else {
-    errors.email = '';
+    const domain = email.split('.').pop().toLowerCase();
+    if (!popularDomains.includes(domain)) {
+      errors.email = 'Please use a common domain (.com, .ru, etc.)';
+    } else {
+      errors.email = ''; // Валидация пройдена
+    }
   }
 };
 
