@@ -20,22 +20,23 @@
         <div class="content-wrapper">
           <MainContent class="main-content" />
           <ContactForm class="contact-form" />
+          <div class="background-controls">
+            <button 
+            v-for="(bg, index) in backgrounds" 
+            :key="index"
+            :class="{ active: currentIndex === index }"
+            @click="changeBackground(index)"
+            :style="{ backgroundImage: `url(${bg.image})` }"
+            class="bg-btn">
+            </button>
+      </div>
         </div>
       </div>
       <LockSmithQuiz ref="quiz" />
       <Table ref="table" />
       
       <!-- Кнопки-слайдеры для смены фона -->
-      <div class="background-controls">
-        <button 
-          v-for="(bg, index) in backgrounds" 
-          :key="index"
-          :class="{ active: currentIndex === index }"
-          @click="changeBackground(index)"
-          :style="{ backgroundImage: `url(${bg.image})` }"
-          class="bg-btn"
-        ></button>
-      </div>
+      
     </div>
   </div>
 </template>
@@ -263,7 +264,11 @@ const handleNavigation = (section) => {
 
 
   .background-controls {
-    bottom: 10px;
+    position: static;
+    transform: none;
+    justify-content: center;
+    margin-top: 5px;
+    padding-bottom: 20px;
   }
 
   .bg-btn {
