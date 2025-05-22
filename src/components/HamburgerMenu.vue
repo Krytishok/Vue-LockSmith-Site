@@ -138,7 +138,7 @@ onBeforeUnmount(() => {
   font-family: 'Arial', sans-serif;
 }
 
-/* Обертка для фиксированного позиционирования */
+
 .menu-header-wrapper {
   position: fixed;
   top: 0;
@@ -147,7 +147,7 @@ onBeforeUnmount(() => {
   z-index: 1100;
 }
 
-/* Заголовок меню с адаптивной шириной */
+
 .menu-header {
   display: inline-flex;
   align-items: center;
@@ -156,7 +156,7 @@ onBeforeUnmount(() => {
   transition: all 0.3s ease;
 }
 
-/* Улучшенный гамбургер с идеальной анимацией */
+
 .hamburger-button {
   padding: 0;
   margin-right: 12px;

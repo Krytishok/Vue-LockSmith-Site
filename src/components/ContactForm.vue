@@ -281,8 +281,8 @@ const submitForm = () => {
 
 .form-group {
   position: relative;
-  margin-bottom: 8px;
-  padding-top: 6px;
+  margin-bottom: 3px;
+  padding-top: 3px;
 }
 
 .form-input, .form-textarea {
